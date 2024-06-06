@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Feed</title>
+    <style>
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 640px;
+            margin: auto;
+        }
+        #video-feed {
+            width: 100%;
+            height: auto;
+        }
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="video-container">
+        <img id="video-feed" src="{{ url_for('video_feed') }}" alt="Video Feed">
+        <div class="overlay"></div>
+    </div>
+    <script>
+        const videoFeed = document.getElementById('video-feed');
+        videoFeed.addEventListener('error', () => {
+            setTimeout(() => {
+                videoFeed.src = "{{ url_for('video_feed') }}";
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
