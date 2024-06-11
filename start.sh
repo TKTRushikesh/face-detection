@@ -1,5 +1,3 @@
-#!/bin/bash
-
 # Exit early on errors
 set -eu
 
